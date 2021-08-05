@@ -8,7 +8,7 @@ node('MASTER') {
     stage('post build') {
         junit '**/TEST-*.xml'
         archive '**/*.war'
-        emailext body: '', subject: 'This build is sucessful', to: 'devops@openmrs.com'
+        emailext body: '', subject: 'This build is sucessful', to: 'ugra.deep@gmail.com'
     }
 
 }
