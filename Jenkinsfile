@@ -21,7 +21,8 @@ pipeline {
             stage('build') {
                 steps {
 
-                        sh " mvn package "                    
+                        sh "mvn package" 
+                        sh "set +e"                   
                 }
             } 
             stage('SONAR ANALYSIS') {
