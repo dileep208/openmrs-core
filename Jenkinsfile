@@ -1,18 +1,18 @@
 pipeline {
 	agent {label 'MASTER'}
-	parameters {
-        string (name: 'BRANCH', defaultValue: 'master', description: 'Branch to build')
-        choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean package'], description: 'Pick something')
-    }
+	// parameters {
+    //     string (name: 'BRANCH', defaultValue: 'master', description: 'Branch to build')
+    //     choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean package'], description: 'Pick something')
+    // }
 	 stages {
             stage('scm') {
-                environment {
-                    DUMMY = 'FUN'
-                }
+                // environment {
+                //     DUMMY = 'FUN'
+                // }
                 steps {
                     
                     //mail subject: 'BUILD is started'+env.BUILD_ID, to: 'devops@dileep.com', from: 'jenkins@dileep.com', body: 'EMPTY BODY'
-                    git branch: "${params.BRANCH}", url: 'https://github.com/dileep208/openmrs-core.git'
+                    git branch: "master", url: 'https://github.com/dileep208/openmrs-core.git'
                 //input message: 'Continue to the next stage? ', submitter: 'dileepaws, dileepazure'
                     echo env.CI_ENV
                     echo env.DUMMY
@@ -21,7 +21,7 @@ pipeline {
             stage('build') {
                 steps {
 
-                        sh " mvn ${params.MAVEN_GOAL} "                    
+                        sh " mvn package "                    
                 }
             } 
             stage('SONAR ANALYSIS') {
